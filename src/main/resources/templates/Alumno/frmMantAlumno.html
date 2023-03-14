@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<script type="text/javascript"
+	th:src="@{/js/jsweb/Alumno/frmMantAlumno.js}"></script>
+<body>
+	<nav th:replace="layout::menu"></nav>
+	<div class="card">
+		<div class="card-header">LISTADO DE ALUMNOS</div>
+		<div class="card-body">
+			<button id="btnagregaralumno" type="button" class="btn btn-primary">Agregar
+				Alumno</button>
+			<hr />
+			<div id="mensaje"></div>
+			<table class="table" id="tblcurso">
+				<thead>
+					<tr>
+						<th scope="col">Código</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Apellido</th>
+						<th scope="col">Especialidad</th>
+						<th scope="col">Procedencia</th>
+
+						<th scope="col">Actualizar</th>
+						<th scope="col">Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="alumno :${listalumnos}">
+						<td th:text="${alumno.idalumno}"></td>
+						<td th:text="${alumno.nomalumno}"></td>
+						<td th:text="${alumno.apealumno}"></td>
+						<td th:text="${alumno.nomesp}"></td>
+						<td th:text="${alumno.proce}"></td>
+						<td>
+							<button type="button" class="btn btn-info btnactualizaralumno"
+								th:data-codalumno="${alumno.idalumno}"
+								th:data-nomalumno="${alumno.nomalumno}"
+								th:data-apealumno="${alumno.apealumno}"
+								th:data-idesp="${alumno.idesp}" th:data-proce="${alumno.proce}">
+								Actualizar</button>
+						</td>
+						<td>
+							<button type="button" class="btn btn-danger btneliminaralumno"
+								th:data-codalumno="${alumno.idalumno}"
+								th:data-nomalumno="${alumno.nomalumno}">Eliminar</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- Modal Nuevo Alumno -->
+	<div class="modal fade" id="modalNuevoAlumno" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
+						title</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="txtnombre" class="form-label">Nombre del
+							curso</label> <input type="text" class="form-control" id="txtnombre">
+						<span id="errornomcurso" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label for="txtapellido" class="form-label">Apellido del
+							curso</label> <input type="text" class="form-control" id="txtapellido">
+						<span id="errorcredcurso" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label for="cboEspecialidad" class="form-label">Especialidad
+							del curso</label> <select id="cboEspecialidad" class="form-select"
+							aria-label="Default select example">
+							<option selected value="0">Seleccione</option>							
+						</select> <span id="errorcredcurso" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label for="txtproce" class="form-label">Procedencia del
+							curso</label> <input type="text" class="form-control" id="txtproce">
+						<span id="errorcredcurso" class="text-danger"></span>
+					</div>
+					<input type="hidden" id="hddidalumno">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" id="btnGuardarAlumno">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Eliminar Alumno -->
+	<div class="modal fade" id="modalEliminarAlumno" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
+						title</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<label id="mensajeeliminar"></label> <input type="hidden"
+						id="hddidcursoeliminar">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-danger" id="btnEliminarAlumno">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

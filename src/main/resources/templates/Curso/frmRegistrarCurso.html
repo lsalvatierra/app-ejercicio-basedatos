@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="layout::menu"></nav>
+	<div class="card">
+		<div class="card-header">REGISTRO DE CURSOS:</div>
+		<div class="card-body">
+			<form th:action="@{/Curso/frmRegistrarCurso}" method="post"
+				th:object="${objCurso}">
+				<div class="mb-3">
+					<label for="txtnomcurso" class="form-label">Nombre del
+						curso:</label> <input type="text" class="form-control" id="txtnomcurso"
+						placeholder="Ingrese el nombre del curso" th:field="*{nomcurso}">
+				</div>
+				<div class="mb-3">
+					<label for="txtcredito" class="form-label">Crédito del
+						curso</label> <input type="text" class="form-control" id="txtcredito"
+						placeholder="Ingrese el crédito del curso." th:field="*{credito}">
+				</div>
+				<button type="submit" class="btn btn-secondary">REGISTRAR</button>
+				<div th:if="${visualizar}" class="alert alert-success" role="alert">
+					<span th:text="${mensaje} ?: ''"></span></div>
+
+			</form>
+
+		</div>
+	</div>
+</body>
+</html>
