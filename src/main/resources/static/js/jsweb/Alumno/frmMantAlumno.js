@@ -51,7 +51,7 @@ $(document).on("click", ".btnactualizaralumno", function() {
 	$("#modalNuevoAlumno").modal("show");
 	$("#txtnombre").val($(this).attr("data-nomalumno"));
 	$("#txtapellido").val($(this).attr("data-apealumno"));
-
+	var idesp = $(this).attr("data-idesp");
 	$("#txtproce").val($(this).attr("data-proce"));
 	$("#hddidalumno").val($(this).attr("data-codalumno"));
 	$("#cboEspecialidad").empty();
@@ -61,14 +61,16 @@ $(document).on("click", ".btnactualizaralumno", function() {
 		dataType: 'json',
 		success: function(resultado) {
 			$.each(resultado, function(index, value) {
-				$('#cboEspecialidad').append(`<option value="${value.idesp}">
-                                       ${value.nomesp}
-                                  </option>`);
+				$('#cboEspecialidad').append($("<option>", {
+						    value: value.idesp,
+						    text: value.nomesp
+						  }));				
 			});
+			$("#cboEspecialidad").val(idesp);
+			//$("#cboEspecialidad option[value="+idesp+"]").attr("selected",true);
 		}
 	});
-	$("#cboEspecialidad").val($(this).attr("data-idesp"));
-	
+	//$("#cboEspecialidad").val($(this).attr("data-idesp"));
 	$("#modalNuevoAlumno").modal("show");
 });
 
